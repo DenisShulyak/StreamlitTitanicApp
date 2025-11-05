@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+
 def calculate_statistics(data, statistic_choice):
     """Вычисление статистики по стоимости билетов"""
     if statistic_choice == "Средняя стоимость":
@@ -20,25 +21,33 @@ def create_result_table(result):
     }
 
     return pd.DataFrame({
-        'Пункт посадки': [embark_mapping.get(emb, emb) for emb in result.index],
+        'Пункт посадки': [
+            embark_mapping.get(emb, emb) for emb in result.index
+        ],
         'Стоимость билета ($)': result.values
     })
 
 
 def main():
-    st.set_page_config(page_title="Данные пассажиров Титаника", layout="centered")
+    st.set_page_config(
+        page_title="Данные пассажиров Титаника",
+        layout="centered"
+    )
 
     # 1) Картинка Титаника
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/800px-RMS_Titanic_3.jpg",
-             caption="RMS Титаник",
-             use_column_width=True)
+    st.image(
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/"
+        "RMS_Titanic_3.jpg/800px-RMS_Titanic_3.jpg",
+        caption="RMS Титаник",
+        use_column_width=True
+    )
 
     # 2) Хидер "Данные пассажиров Титаника"
     st.title("Данные пассажиров Титаника")
 
     # 3) Описание выбора
     st.markdown("""
-    **Вычислить среднюю, минимальную или максимальную стоимость билета 
+    **Вычислить среднюю, минимальную или максимальную стоимость билета
     у пассажиров по каждому пункту посадки.**
     """)
 
@@ -52,7 +61,11 @@ def main():
     # 4) Выбор значения поля (мин/средн/макс)
     statistic_choice = st.selectbox(
         "Выберите тип стоимости билета:",
-        ["Средняя стоимость", "Минимальная стоимость", "Максимальная стоимость"]
+        [
+            "Средняя стоимость",
+            "Минимальная стоимость",
+            "Максимальная стоимость"
+        ]
     )
 
     # Расчет выбранной статистики
@@ -64,6 +77,7 @@ def main():
     # Отображение таблицы
     st.markdown(f"**{statistic_choice} по пунктам посадки:**")
     st.dataframe(result_table, width=600)
+
 
 if __name__ == "__main__":
     main()

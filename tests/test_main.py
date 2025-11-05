@@ -1,6 +1,6 @@
 import pandas as pd
-import pytest
 from main import calculate_statistics, create_result_table
+
 
 # Тестовые данные
 def create_test_data():
@@ -8,6 +8,7 @@ def create_test_data():
         'Embarked': ['C', 'Q', 'S', 'C', 'S'],
         'Fare': [100.0, 50.0, 75.0, 150.0, 25.0]
     })
+
 
 # Тест 1: Проверка расчета средней стоимости
 def test_calculate_mean():
