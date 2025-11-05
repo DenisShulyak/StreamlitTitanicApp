@@ -1,5 +1,5 @@
 import pandas as pd
-from main import calculate_statistics, create_result_table
+from ..main import calculate_statistics, create_result_table
 
 
 # Тестовые данные
